@@ -323,8 +323,4 @@ Return output file name."
 
 (provide 'ox-textile)
 
-;; Local variables:
-;; generated-autoload-file: "org-loaddefs.el"
-;; End:
-
 ;;; ox-textile.el ends here

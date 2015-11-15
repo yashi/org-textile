@@ -203,7 +203,7 @@ information."
 (defun org-textile-table-cell (table-cell contents info)
   "Transcode TABLE CELL element into Textile format."
   (let ((first-col-p (= 0 (cdr (org-export-table-cell-address table-cell info)))))
-    (format (concat (if first-col-p "" " ") "| %s")  contents)))
+    (format (concat (if first-col-p "" " ") "| %s")  (or contents ""))))
 
 
 ;;; Link

@@ -193,8 +193,19 @@ p. <!-- protecting the space after the dot -->
 |-.
 | Peter | 1234 | 17 |
 | Anna | 4321 | 25 |
-"))
+")
 
+  (let ((org-textile-use-thead nil))
+    (org-textile-test-transcode-body
+    "| Name  | Phone | Age |
+|-------+-------+-----|
+| Peter |  1234 |  17 |
+| Anna  |  4321 |  25 |
+"
+    "|_. Name |_. Phone |_. Age |
+| Peter | 1234 | 17 |
+| Anna | 4321 | 25 |
+")))
 
 ;;; Link
 (ert-deftest test-ox-pukiwiki/link ()

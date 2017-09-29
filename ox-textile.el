@@ -146,9 +146,13 @@ CONTENTS is the contents of the list.  INFO is a plist holding
 contextual information."
   contents)
 
-(defun org-textile-item-list-depth (item)
-  (let ((parent item)
-	(depth 0))
+(defun org-textile-item-list-depth (item info)
+  (let* ((headline-level
+	  (org-export-get-relative-level
+	   (org-export-get-parent-headline item) info))
+	 (headline-levels (plist-get info :headline-levels))
+	 (parent item)
+	 (depth (max 0 (- headline-level headline-levels))))
     (while (and (setq parent (org-export-get-parent parent))
 		(cl-case (org-element-type parent)
 		  (item t)
@@ -159,10 +163,10 @@ contextual information."
   '((unordered . ?*)
     (ordered . ?#)))
 
-(defun org-textile-list-item-delimiter (item)
+(defun org-textile-list-item-delimiter (item info)
   (let* ((plain-list (org-export-get-parent item))
 	 (type (org-element-property :type plain-list))
-	 (depth (org-textile-item-list-depth item))
+	 (depth (org-textile-item-list-depth item info))
 	 (bullet (cdr (assq type org-textile-list-bullets))))
     (when bullet
      (make-string depth bullet))))
@@ -171,7 +175,7 @@ contextual information."
   "Transcode an ITEM element into Textile format.
 CONTENTS holds the contents of the item.  INFO is a plist holding
 contextual information."
-  (format "%s %s" (org-textile-list-item-delimiter item) contents))
+  (format "%s %s" (org-textile-list-item-delimiter item info) contents))
 
 
 ;;; Example Block

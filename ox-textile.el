@@ -147,9 +147,12 @@ contextual information."
   contents)
 
 (defun org-textile-item-list-depth (item info)
-  (let* ((headline-level
-	  (org-export-get-relative-level
-	   (org-export-get-parent-headline item) info))
+  (let* ((headline (org-export-get-parent-headline item))
+	 (headline-level
+	  (if headline
+	      (org-export-get-relative-level headline info)
+	    0
+	    ))
 	 (headline-levels (plist-get info :headline-levels))
 	 (parent item)
 	 (depth (max 0 (- headline-level headline-levels))))

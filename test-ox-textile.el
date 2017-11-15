@@ -99,6 +99,59 @@ h6. 5th headline
 ** 7th headline
 "))
 
+;;; Mixed headlines and list items
+(ert-deftest test-org-textile/headline-mixed ()
+  (org-textile-test-transcode-body
+   "* 1st headline
+** 2nd headline
+*** 3rd headline
+**** 4th headline
+***** 5th headline
+- 1st list item
+  - 2nd list item"
+"\nh2. 1st headline
+
+
+h3. 2nd headline
+
+
+h4. 3rd headline
+
+
+h5. 4th headline
+
+
+h6. 5th headline
+
+* 1st list item
+** 2nd list item
+"))
+
+;;; Headlines, list items and limited headline level
+(ert-deftest test-org-textile/headline-limited ()
+  (org-textile-test-transcode-body
+   "#+OPTIONS: H:1
+* 1st headline
+- 1st list item
+  - 2nd list item
+** 2nd headline
+*** 3rd headline
+- 3rd list item
+  - 4th list item
+**** 4th headline
+***** 5th headline
+"
+"\nh2. 1st headline
+
+* 1st list item
+** 2nd list item
+* 2nd headline
+** 3rd headline
+*** 3rd list item
+**** 4th list item
+*** 4th headline
+**** 5th headline
+"))
 
 ;;; List
 (ert-deftest test-org-textile/unordered-list ()

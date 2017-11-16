@@ -107,6 +107,7 @@ h6. 5th headline
 *** 3rd headline
 **** 4th headline
 ***** 5th headline
+****** 6th headline
 - 1st list item
   - 2nd list item"
 "\nh2. 1st headline
@@ -123,8 +124,9 @@ h5. 4th headline
 
 h6. 5th headline
 
-* 1st list item
-** 2nd list item
+* 6th headline
+** 1st list item
+*** 2nd list item
 "))
 
 ;;; Headlines, list items and limited headline level

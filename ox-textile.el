@@ -144,7 +144,7 @@ CONTENTS is the headline contents."
   "Transcode a PLAIN-LIST element into Textile format.
 CONTENTS is the contents of the list.  INFO is a plist holding
 contextual information."
-  contents)
+  (replace-regexp-in-string "\n\n" "\n" contents))
 
 (defun org-textile-item-list-depth (item info)
   (let* ((headline (org-export-get-parent-headline item))

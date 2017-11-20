@@ -179,6 +179,24 @@ h6. 5th headline
 **** list
 ***** list\n"))
 
+;;; Spurious newlines between list items
+(ert-deftest test-org-textile/unordered-list-newlines ()
+  (org-textile-test-transcode-body
+   "
+- list
+
+  - list
+
+    - list
+      - list
+        - list"
+   "* list
+** list
+*** list
+**** list
+***** list\n"))
+
+
 (ert-deftest test-org-textile/ordered-list ()
   (org-textile-test-transcode-body
    "1. list 1

@@ -194,7 +194,33 @@ h6. 5th headline
 ** list
 *** list
 **** list
-***** list\n"))
+***** list\n")
+  (org-textile-test-transcode-body
+   "
+- list a
+- list a
+
+- list a
+
+
+- list b
+
+- list b
+
+
+- list c
+- list c"
+   "* list a
+* list a
+* list a
+
+
+* list b
+* list b
+
+
+* list c
+* list c\n"))
 
 
 (ert-deftest test-org-textile/ordered-list ()

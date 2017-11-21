@@ -11,3 +11,12 @@ An Org Mode Exporter Backend For Textile
        (require 'ox-textile)
      #+END_SRC
   4) open a .org file and run =org-textile-export-as-textile=
+
+* Test
+  If you have `org-mode` code parallel to `org-textile`, do
+  #+BEGIN_EXAMPLE
+    $ ls
+    org-mode  org-textile
+    $ cd org-textile
+    $ make test
+  #+END_EXAMPLE

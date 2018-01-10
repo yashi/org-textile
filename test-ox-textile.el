@@ -250,6 +250,22 @@ h6. 5th headline
 "))
 
 
+(ert-deftest test-org-textile/definition-list ()
+  (org-textile-test-transcode-body
+   "- term1 :: this is term1
+- term2 :: this is term2
+- term 3 :: this is \"item 3\"
+- term 4 :: this is \"term 4\".  and this line is so long that it must
+            be wrapped to the second line."
+   "- term1 := this is term1
+- term2 := this is term2
+- term 3 := this is \"item 3\"
+- term 4 :=
+this is \"term 4\".  and this line is so long that it must
+be wrapped to the second line.
+"))
+
+
 ;;; Example Blocks to Listing Blocks
 (ert-deftest test-org-textile/example-block-to-listing-block ()
   (org-textile-test-transcode-body

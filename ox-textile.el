@@ -160,13 +160,12 @@ contextual information."
 
 (defvar org-textile-list-bullets
   '((unordered . ?*)
-    (ordered . ?#)))
+    (ordered . ?#)
+    (descriptive . ?-)))
 
-(defun org-textile-list-item-delimiter (item info)
-  (let* ((plain-list (org-export-get-parent item))
-	 (type (org-element-property :type plain-list))
-	 (depth (org-textile-item-list-depth item info))
-	 (bullet (cdr (assq type org-textile-list-bullets))))
+(defun org-textile-list-item-delimiter (type item info)
+  (let ((depth (org-textile-item-list-depth item info))
+	(bullet (cdr (assq type org-textile-list-bullets))))
     (when bullet
      (make-string depth bullet))))
 
@@ -174,7 +173,18 @@ contextual information."
   "Transcode an ITEM element into Textile format.
 CONTENTS holds the contents of the item.  INFO is a plist holding
 contextual information."
-  (format "%s %s" (org-textile-list-item-delimiter item info) contents))
+  (let* ((plain-list (org-export-get-parent item))
+         (type (org-element-property :type plain-list))
+         (delim (org-textile-list-item-delimiter type item info)))
+    (pcase type
+      (`descriptive
+       (format "%s %s :=%s"
+               delim
+               (org-export-data (org-element-property :tag item) info)
+               (concat (if (string-match-p "\n" (org-trim contents t)) "\n" " ")
+                       contents)))
+      (_
+       (format "%s %s" delim contents)))))
 
 
 ;;; Example Block

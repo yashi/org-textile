@@ -181,7 +181,7 @@ contextual information."
        (format "%s %s :=%s"
                delim
                (org-export-data (org-element-property :tag item) info)
-               (concat (if (string-match-p "\n" (org-trim contents t)) "\n" " ")
+               (concat (if (string-match-p "\n" (org-trim contents)) "\n" " ")
                        contents)))
       (_
        (format "%s %s" delim contents)))))

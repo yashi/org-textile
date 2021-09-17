@@ -32,6 +32,7 @@
 
 ;;; Code:
 (require 'ox)
+(require 'ox-publish)
 
 (defgroup org-export-textile nil
   "Options for exporting Org mode files to Textile."
@@ -106,6 +107,11 @@
   "Whether to use <thead> constructs `|^.' and `|-.'"
   :group 'org-export-textile
   :type 'boolean)
+
+(defcustom org-textile-extension ".txt"
+  "The extension used in file output"
+  :group 'org-export-textile
+  :type 'string)
 
 (defsubst org-textile-trim (s &optional keep-lead)
   "This function is, shamelessly, a copy of org-trim taken from
@@ -343,8 +349,18 @@ contents of hidden elements.
 
 Return output file name."
   (interactive)
-  (let ((outfile (org-export-output-file-name ".txt" subtreep)))
+  (let ((outfile (org-export-output-file-name org-textile-extension subtreep)))
     (org-export-to-file 'textile outfile async subtreep visible-only)))
+
+(defun org-textile-publish-to-textile (plist filename pub-dir)
+  "Publish an org file to Textile.
+
+FILENAME is the filename of the Org file to be published.  PLIST
+is the property list for the given project.  PUB-DIR is the
+publishing directory.
+
+Return output file name."
+  (org-publish-org-to 'textile filename org-textile-extension plist pub-dir))
 
 (provide 'ox-textile)
 

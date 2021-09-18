@@ -107,6 +107,11 @@
   :group 'org-export-textile
   :type 'boolean)
 
+(defcustom org-textile-extension ".txt"
+  "The extension used in file output"
+  :group 'org-export-textile
+  :type 'string)
+
 (defsubst org-textile-trim (s &optional keep-lead)
   "This function is, shamelessly, a copy of org-trim taken from
 Org version 9.0.  This function is to support Org v8.1, which has
@@ -343,7 +348,7 @@ contents of hidden elements.
 
 Return output file name."
   (interactive)
-  (let ((outfile (org-export-output-file-name ".txt" subtreep)))
+  (let ((outfile (org-export-output-file-name org-textile-extension subtreep)))
     (org-export-to-file 'textile outfile async subtreep visible-only)))
 
 (provide 'ox-textile)

@@ -32,6 +32,7 @@
 
 ;;; Code:
 (require 'ox)
+(require 'ox-publish)
 
 (defgroup org-export-textile nil
   "Options for exporting Org mode files to Textile."
@@ -350,6 +351,16 @@ Return output file name."
   (interactive)
   (let ((outfile (org-export-output-file-name org-textile-extension subtreep)))
     (org-export-to-file 'textile outfile async subtreep visible-only)))
+
+(defun org-textile-publish-to-textile (plist filename pub-dir)
+  "Publish an org file to Textile.
+
+FILENAME is the filename of the Org file to be published.  PLIST
+is the property list for the given project.  PUB-DIR is the
+publishing directory.
+
+Return output file name."
+  (org-publish-org-to 'textile filename org-textile-extension plist pub-dir))
 
 (provide 'ox-textile)
 

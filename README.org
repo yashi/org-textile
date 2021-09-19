@@ -1,3 +1,5 @@
+[[https://melpa.org/#/ox-asciidoc][file:https://melpa.org/packages/ox-textile-badge.svg]]
+
 * org-textile
 
 An Org Mode Exporter Backend For Textile

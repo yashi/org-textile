@@ -22,3 +22,16 @@ An Org Mode Exporter Backend For Textile
     $ cd org-textile
     $ make test
   #+end_example
+
+* org-publish
+
+  If you want to use `org-publish` with ox-textile, setup your
+  `org-publish-project-alist` like this:
+
+  #+begin_src lisp
+    (setq org-publish-project-alist
+	  '(("my-proj"
+	     :base-directory "/tmp/my-dir"
+	     :publishing-directory "/tmp/pub-dir"
+	     :publishing-function org-textile-publish-to-textile)))
+  #+end_src

@@ -8,17 +8,17 @@ An Org Mode Exporter Backend For Textile
   1) Make sure you have org-mode v8.0 or later
   2) Clone this repository
   3) Add the following to your .emacs
-     #+BEGIN_SRC lisp
+     #+begin_src lisp
        (add-to-list 'load-path "~/path/to/org-textile/")
        (require 'ox-textile)
-     #+END_SRC
+     #+end_src
   4) open a .org file and run =org-textile-export-as-textile=
 
 * Test
   If you have `org-mode` code parallel to `org-textile`, do
-  #+BEGIN_EXAMPLE
+  #+begin_example
     $ ls
     org-mode  org-textile
     $ cd org-textile
     $ make test
-  #+END_EXAMPLE
+  #+end_example
